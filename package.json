@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint . --max-warnings=0",
+    "lint": "eslint . --max-warnings=0 && tsc -p tsconfig.app.json",
     "lint:fix": "eslint . --fix --max-warnings=0",
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\"",
@@ -39,6 +39,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
+      "bash -c 'tsc -p tsconfig.app.json --noEmit'",
       "eslint --fix --max-warnings=0",
       "prettier --write"
     ],

@@ -92,6 +92,16 @@ export const MatrixProvider: React.FC<MatrixProviderProps> = ({ children }) => {
     </MatrixContext.Provider>
   );
 };
+/**
+ * Accesses the global matrix state and actions.
+ *
+ * Provides:
+ * - current matrix data
+ * - matrix parameters (M, N, X)
+ * - actions for generating, updating, and mutating the matrix
+ *
+ * @throws Error if used outside of MatrixProvider.
+ */
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const useMatrix = (): MatrixContextType => {

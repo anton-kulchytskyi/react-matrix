@@ -15,6 +15,18 @@ interface UseMatrixPercentageReturn {
   getCellStyle: (rowIndex: number, cellIndex: number) => React.CSSProperties;
 }
 
+/**
+ * Handles percentage view and heatmap styling when hovering over a row's sum cell.
+ *
+ * Provides:
+ * - tracking of which row is currently hovered
+ * - percentage display for each cell in the hovered row
+ * - heatmap-based background/text color styling
+ *
+ * @param matrix - 2D matrix data.
+ * @param rowSums - Precomputed sums for each row.
+ * @returns Handlers and helpers for percentage mode and heatmap styling.
+ */
 export const useMatrixPercentage = (
   matrix: MatrixData,
   rowSums: number[]

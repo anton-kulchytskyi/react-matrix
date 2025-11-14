@@ -10,6 +10,21 @@ interface UseMatrixHoverReturn {
   isCellNearest: (cellId: number) => boolean;
 }
 
+/**
+ * Manages hover logic for highlighting X nearest cells by value.
+ *
+ * Tracks:
+ * - which cell is currently hovered
+ * - calculates the nearest cells to the hovered one
+ *
+ * Provides:
+ * - enter/leave handlers for cell hover
+ * - helper to check if a cell belongs to the nearest list
+ *
+ * @param matrix - 2D matrix of cells.
+ * @param x - Number of nearest cells to highlight.
+ * @returns Hover state, nearest cell IDs, and interaction handlers.
+ */
 export const useMatrixHover = (
   matrix: MatrixData,
   x: number

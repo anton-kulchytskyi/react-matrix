@@ -26,6 +26,17 @@ const DEFAULT_PARAMS: MatrixFormParams = {
   x: '3',
 };
 
+/**
+ * Manages form state and validation for matrix input parameters (M, N, X).
+ *
+ * Handles:
+ * - controlled input values
+ * - validation of all parameters
+ * - computing maximum allowed X value based on M×N
+ * - submit behavior with a typed callback
+ *
+ * @returns Current params, update handler, submit handler, validation error, and computed X limit.
+ */
 export const useMatrixForm = (): UseMatrixFormReturn => {
   const [params, setParams] = useState<MatrixFormParams>(DEFAULT_PARAMS);
 

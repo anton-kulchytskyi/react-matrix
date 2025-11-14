@@ -1,6 +1,14 @@
 import type { ValidationResult } from '@/types/matrix.types';
 import { parseIntValue, isValidInteger, isInRange } from './parseUtils';
 
+/**
+ * Parses raw string inputs for M, N, and X into numeric values.
+ *
+ * @param mStr - Raw string input for M.
+ * @param nStr - Raw string input for N.
+ * @param xStr - Raw string input for X.
+ * @returns Object with parsed numeric values (fallback to 0 on failure).
+ */
 export function getParsedParams(mStr: string, nStr: string, xStr: string) {
   return {
     m: parseInt(mStr) || 0,
@@ -12,6 +20,14 @@ export function getParsedParams(mStr: string, nStr: string, xStr: string) {
 const MIN_MNX = 0;
 const MAX_MN = 100;
 
+/**
+ * Validates a single matrix parameter (M, N, or X).
+ *
+ * @param strValue - Raw string input value.
+ * @param paramName - Parameter name ("M", "N", or "X") for error messages.
+ * @param maxLimit - Upper allowed boundary for the value.
+ * @returns Object containing the parsed number and validation result.
+ */
 const validateSingleParam = (
   strValue: string,
   paramName: 'M' | 'N' | 'X',
@@ -42,6 +58,18 @@ const validateSingleParam = (
   return { value: value, result: { isValid: true } };
 };
 
+/**
+ * Validates all matrix parameters: M, N, and X.
+ *
+ * Ensures:
+ * - M and N are integers within allowed ranges.
+ * - X is within valid range based on total number of cells (M × N).
+ *
+ * @param m - Raw string input for M.
+ * @param n - Raw string input for N.
+ * @param x - Raw string input for X.
+ * @returns Validation result including parsed values if valid.
+ */
 export const validateMatrixParams = (
   m: string,
   n: string,

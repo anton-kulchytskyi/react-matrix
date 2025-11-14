@@ -1,5 +1,13 @@
 import type { Cell, MatrixData } from '../types/matrix.types';
 
+/**
+ * Finds X cells whose values are closest to the target cell's value.
+ *
+ * @param matrix - 2D matrix of cells.
+ * @param targetCellId - ID of the cell used as the reference point.
+ * @param x - Number of nearest cells to return.
+ * @returns Array of cell IDs sorted by closeness to the target.
+ */
 export const findNearestCells = (
   matrix: MatrixData,
   targetCellId: number,

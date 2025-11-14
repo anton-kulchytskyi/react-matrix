@@ -1,13 +1,33 @@
-import React, { createContext, useContext, useState } from 'react';
+import {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useMemo,
+} from 'react';
 import type { ReactNode } from 'react';
-import type { MatrixData, MatrixParams } from '../types/matrix.types';
-import { generateMatrix } from '@utils/matrixGenerator';
+import type {
+  MatrixData,
+  MatrixParams,
+  MatrixState,
+} from '../types/matrix.types';
+
+import {
+  mutateGenerateNewMatrix,
+  mutateUpdateParams,
+  mutateIncreaseCellValue,
+  mutateRemoveRow,
+  mutateAddRow,
+} from '../utils/matrixMutators';
 
 interface MatrixContextType {
   matrix: MatrixData;
   params: MatrixParams;
   generateNewMatrix: (m: number, n: number, x: number) => void;
   updateParams: (newParams: Partial<MatrixParams>) => void;
+  increaseCellValue: (cellId: number) => void;
+  removeRow: (rowIndex: number) => void;
+  addRow: () => void;
 }
 
 const MatrixContext = createContext<MatrixContextType | undefined>(undefined);
@@ -16,41 +36,58 @@ interface MatrixProviderProps {
   children: ReactNode;
 }
 
+const initialState: MatrixState = {
+  matrix: [],
+  params: { m: 0, n: 0, x: 0 },
+};
+
 export const MatrixProvider: React.FC<MatrixProviderProps> = ({ children }) => {
-  const [matrix, setMatrix] = useState<MatrixData>([]);
-  const [params, setParams] = useState<MatrixParams>({
-    m: 0,
-    n: 0,
-    x: 0,
-  });
+  const [state, setState] = useState<MatrixState>(initialState);
 
-  const generateNewMatrix = (m: number, n: number, x: number) => {
-    const newMatrix = generateMatrix(m, n);
-    setMatrix(newMatrix);
-    setParams({ m, n, x });
-  };
+  const generateNewMatrix = useCallback((m: number, n: number, x: number) => {
+    const newState = mutateGenerateNewMatrix(m, n, x);
+    setState(newState);
+  }, []);
 
-  const updateParams = (newParams: Partial<MatrixParams>) => {
-    const updatedParams = { ...params, ...newParams };
+  const updateParams = useCallback((newParams: Partial<MatrixParams>) => {
+    setState((prevState) => mutateUpdateParams(prevState, newParams));
+  }, []);
 
-    // If M or N changed, regenerate matrix
-    if (newParams.m !== undefined || newParams.n !== undefined) {
-      const newMatrix = generateMatrix(updatedParams.m, updatedParams.n);
-      setMatrix(newMatrix);
-    }
+  const increaseCellValue = useCallback((cellId: number) => {
+    setState((prevState) => mutateIncreaseCellValue(prevState, cellId));
+  }, []);
 
-    setParams(updatedParams);
-  };
+  const removeRow = useCallback((rowIndex: number) => {
+    setState((prevState) => mutateRemoveRow(prevState, rowIndex));
+  }, []);
+
+  const addRow = useCallback(() => {
+    setState((prevState) => mutateAddRow(prevState));
+  }, []);
+
+  const contextValue = useMemo(
+    () => ({
+      matrix: state.matrix,
+      params: state.params,
+      generateNewMatrix,
+      updateParams,
+      increaseCellValue,
+      removeRow,
+      addRow,
+    }),
+    [
+      state.matrix,
+      state.params,
+      generateNewMatrix,
+      updateParams,
+      increaseCellValue,
+      removeRow,
+      addRow,
+    ]
+  );
 
   return (
-    <MatrixContext.Provider
-      value={{
-        matrix,
-        params,
-        generateNewMatrix,
-        updateParams,
-      }}
-    >
+    <MatrixContext.Provider value={contextValue}>
       {children}
     </MatrixContext.Provider>
   );

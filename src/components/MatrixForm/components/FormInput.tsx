@@ -4,6 +4,8 @@ interface FormInputProps {
   id: string;
   label: string;
   value: string;
+  min: number;
+  max: number;
   onChange: (value: string) => void;
   hint?: string;
   required?: boolean;
@@ -13,6 +15,8 @@ export const FormInput = ({
   id,
   label,
   value,
+  min,
+  max,
   onChange,
   hint,
   required = false,
@@ -27,6 +31,8 @@ export const FormInput = ({
         id={id}
         type="number"
         value={value}
+        min={min}
+        max={max}
         onChange={(e) => onChange(e.target.value)}
         required={required}
       />

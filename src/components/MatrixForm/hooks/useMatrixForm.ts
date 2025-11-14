@@ -47,7 +47,7 @@ export const useMatrixForm = (): UseMatrixFormReturn => {
 
     const totalCells = m * n;
 
-    return Math.min(totalCells, 100);
+    return totalCells;
   }, [params.m, params.n]);
 
   const updateParam = (key: keyof MatrixFormParams, value: string) => {

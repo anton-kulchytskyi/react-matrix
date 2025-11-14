@@ -8,7 +8,7 @@ export const MatrixForm = () => {
   const { params, updateParam, handleSubmit, error, maxXLimit } =
     useMatrixForm();
 
-  const currentLimitX = `0-${maxXLimit}`;
+  const currentLimitX = `0 - ${maxXLimit}`;
   const isError = !!error;
 
   const buttonText = isError ? error : 'Generate Matrix';
@@ -24,8 +24,10 @@ export const MatrixForm = () => {
         id="m-input"
         label="M (rows):"
         value={params.m}
+        min={0}
+        max={100}
         onChange={(value) => updateParam('m', value)}
-        hint="0-100"
+        hint="Range: 0 - 100"
         required
       />
 
@@ -33,8 +35,10 @@ export const MatrixForm = () => {
         id="n-input"
         label="N (columns):"
         value={params.n}
+        min={0}
+        max={100}
         onChange={(value) => updateParam('n', value)}
-        hint="0-100"
+        hint="Range: 0 - 100"
         required
       />
 
@@ -42,8 +46,10 @@ export const MatrixForm = () => {
         id="x-input"
         label="X (nearest cells):"
         value={params.x}
+        min={0}
+        max={maxXLimit}
         onChange={(value) => updateParam('x', value)}
-        hint={currentLimitX}
+        hint={`Range: ${currentLimitX}`}
         required
       />
 

@@ -1,0 +1,42 @@
+.matrix-header-corner,
+.matrix-header-col,
+.matrix-header-sum,
+.matrix-header-actions,
+.matrix-header-row {
+  padding: 12px 16px;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+  font-size: 14px;
+  font-weight: 600;
+  min-width: 80px;
+}
+
+.matrix-header-corner,
+.matrix-header-col,
+.matrix-header-row {
+  background-color: #f0f0f0;
+  color: #555;
+}
+
+.matrix-header-sum {
+  background-color: #e8f4f8;
+  border-color: #d0e8f0;
+  color: #2c5f7a;
+}
+
+.matrix-header-actions {
+  background-color: #fce4ec;
+  border-color: #f8bbd0;
+  color: #c2185b;
+}
+
+@media (max-width: 768px) {
+  .matrix-header-corner,
+  .matrix-header-col,
+  .matrix-header-sum,
+  .matrix-header-actions {
+    padding: 10px 12px;
+    font-size: 13px;
+    min-width: 60px;
+  }
+}

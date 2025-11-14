@@ -1,0 +1,25 @@
+.matrix-percentile-row .matrix-header-row {
+  background-color: #fef9f0;
+  border: 1px solid #f0e8d0;
+  color: #7a5f2c;
+}
+
+.matrix-percentile-cell {
+  padding: 16px 20px;
+  text-align: center;
+  border: 1px solid #f0e8d0;
+  background-color: #fef9f0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #7a5f2c;
+  min-width: 80px;
+  transition: background-color 0.2s;
+}
+
+@media (max-width: 768px) {
+  .matrix-percentile-cell {
+    padding: 12px 16px;
+    font-size: 14px;
+    min-width: 60px;
+  }
+}

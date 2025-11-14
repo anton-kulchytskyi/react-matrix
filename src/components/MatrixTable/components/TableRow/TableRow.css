@@ -1,0 +1,68 @@
+.matrix-header-row {
+  background-color: #f0f0f0;
+  color: #555;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+  min-width: 80px;
+}
+
+.matrix-sum-cell {
+  padding: 16px 20px;
+  text-align: center;
+  border: 1px solid #d0e8f0;
+  background-color: #f0f8fc;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c5f7a;
+  min-width: 80px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.matrix-sum-cell:hover {
+  background-color: #d0ebf5;
+  border-color: #90caf9;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.sum-cell-hovered {
+  background-color: #1976d2 !important;
+  color: white !important;
+  border-color: #1565c0 !important;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.5);
+}
+
+.matrix-actions-cell {
+  padding: 8px 12px;
+  text-align: center;
+  border: 1px solid #f8bbd0;
+  background-color: #fff;
+  min-width: 80px;
+}
+
+.btn-remove-row {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+  opacity: 0.7;
+}
+
+.btn-remove-row:hover:not(:disabled) {
+  opacity: 1;
+  background-color: #ffebee;
+}
+
+.btn-remove-row:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none;
+}

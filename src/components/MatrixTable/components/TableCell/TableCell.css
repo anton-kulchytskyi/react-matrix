@@ -1,0 +1,94 @@
+.matrix-cell {
+  padding: 16px 20px;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  min-width: 80px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.matrix-cell:hover {
+  background-color: #e8f5e9;
+  border-color: #4caf50;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+}
+
+.matrix-cell:active {
+  background-color: #c8e6c9;
+}
+
+.matrix-cell.cell-hovered {
+  background-color: #4caf50;
+  color: white;
+  border-color: #388e3c;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.4);
+  z-index: 2;
+}
+
+.matrix-cell.cell-nearest {
+  background-color: #fff3e0;
+  border-color: #ff9800;
+  box-shadow: 0 0 0 2px #ff9800;
+  animation: highlightPulse 0.3s ease;
+}
+
+.matrix-cell.cell-nearest:hover {
+  background-color: #ffe0b2;
+  border-color: #f57c00;
+}
+
+.matrix-cell.cell-percentage {
+  cursor: default;
+}
+
+.matrix-cell.cell-percentage:hover {
+  background-color: initial;
+  border-color: #e0e0e0;
+  box-shadow: none;
+}
+
+/* Animations */
+@keyframes highlightPulse {
+  50% {
+    box-shadow: 0 0 0 4px rgba(255, 152, 0, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 0 2px #ff9800;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    background-color: initial;
+  }
+  50% {
+    background-color: #81c784;
+    color: white;
+  }
+  100% {
+    background-color: initial;
+  }
+}
+
+.matrix-cell.cell-updated {
+  animation: pulse 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .matrix-cell {
+    padding: 12px 16px;
+    font-size: 14px;
+    min-width: 60px;
+  }
+}
